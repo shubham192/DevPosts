@@ -1,0 +1,26 @@
+{
+  "name": "devposts",
+  "version": "1.0.0",
+  "description": "Show your latest DEV posts in your GitHub README",
+  "main": "action/index.js",
+  "scripts": {
+    "start": "node action/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrejarrell/DevPosts.git"
+  },
+  "author": "Andre Jarrell <mail@andrejarrell.com> (https://andrejarrell.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrejarrell/DevPosts/issues"
+  },
+  "homepage": "https://github.com/andrejarrell/DevPosts#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "markdown-table": "^2.0.0",
+    "moment": "^2.27.0",
+    "superagent": "^6.0.0",
+    "xml2js": "^0.4.23"
+  }
+}

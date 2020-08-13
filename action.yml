@@ -1,0 +1,60 @@
+name: Update Dev Posts
+author: Andre Jarrell
+description: Show your latest DEV posts in your GitHub README
+
+inputs:
+  github_token:
+    required: true
+    description: Used to authenticate
+
+  posts_amount:
+    required: false
+    default: 0
+    description: Amount of posts
+
+  posts_type:
+    required: false
+    default: table
+    description: Table or List
+
+  posts_feed:
+    required: true
+    description: URL for DEV feed
+
+  posts_file:
+    required: false
+    default: README.md
+    description: File to be edited
+
+  posts_locator: 
+    required: false
+    default: devposts
+    description: Comment tag used to inject posts
+
+  date_format:
+    required: false
+    default: MM/DD/YYYY
+    description: Format for date
+
+  commit_username: 
+    required: false
+    default: workflow
+    description: Name used when commiting
+  
+  commit_email:
+    required: false
+    default: workflow@github.com
+    description: Email used when commiting
+
+  commit_message: 
+    required: false
+    default: Updated DEV Posts
+    description: Message used when commiting
+
+runs: 
+  using: node12
+  main: action/index.js
+
+branding:
+  icon: pen-tool
+  color: blue
