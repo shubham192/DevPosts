@@ -1,17 +1,18 @@
-let input = require('./input');
-let xml2js = require('xml2js');
 let moment = require('moment');
 let fs = require('fs').promises;
 let Parser = require('rss-parser');
+let core = require('@actions/core');
 let { exec } = require('child_process');
 let markdowntable = require('markdown-table');
 
 let util = {
     commit: () => {
-        let { file } = input.posts;
-        let { token } = input.github;
+        let file = core.getInput('posts_file');
         let repo = process.env.GITHUB_REPOSITORY;
-        let { username, email, message } = input.commit;
+        let token = core.getInput('github_token');
+        let email = core.getInput('commit_email');
+        let message = core.getInput('commit_message');
+        let username = core.getInput('commit_username');
         exec(`git config --global user.email "${email}"`);
         exec(`git config --global user.name "${username}"`);
         exec(`git remote set-url origin https://${token}@github.com/${repo}.git`);
@@ -21,19 +22,19 @@ let util = {
     },
 
     formatDate: string => {
-        let { format } = input.date;
+        let format = core.getInput('date_format');
         return moment(string).format(format);
     },
 
     getFeed: async () => {
         let parser = new Parser();
-        let { feed } = input.posts;
+        let feed = core.getInput('posts_feed');
         return await parser.parseURL(feed);
     },
 
     createTable: posts => {
-        let { amount } = input.posts;
         let rows = [['Name', 'Date']];
+        let amount = core.getInput('posts_amount');
         if (amount == '0') {
             posts.forEach(p => {
                 rows.push([
@@ -52,8 +53,8 @@ let util = {
     },
 
     createList: posts => {
-        let { amount } = input.posts;
         let rows = [];
+        let amount = core.getInput('posts_amount');
         if (amount == '0') {
             posts.forEach(p => {
                 rows.push(`- [${p.title}](${p.link}) - ${util.formatDate(p.pubDate)}`);
@@ -70,7 +71,8 @@ let util = {
     },
 
     editFile: async (posts, string) => {
-        let { file, locator } = input.posts;
+        let file = core.getInput('posts_file');
+        let locator = core.getInput('posts_locator');
         let start = `<!-- ${locator}:start -->`;
         let end = `<!-- ${locator}:end -->`;
         let startIndex = string.search(start) + start.length;
