@@ -56,5 +56,5 @@ runs:
   main: dist/index.js
 
 branding:
-  icon: pen-tool
+  icon: book-open
   color: blue
