@@ -1,5 +1,21 @@
 # DevPosts
 
+<details>
+<summary>🖼 Examples</summary>
+
+### Table
+
+| Name                                                                            | Date       |
+| ------------------------------------------------------------------------------- | ---------- |
+| [JavaScript Calculator](https://dev.to/andrejarrell/javascript-calculator-4l6m) | 08/11/2020 |
+| [CSS Variables](https://dev.to/andrejarrell/css-variables-21g)                  | 08/03/2020 |
+
+### List
+
+- [JavaScript Calculator](https://dev.to/andrejarrell/javascript-calculator-4l6m) - 08/11/2020
+- [CSS Variables](https://dev.to/andrejarrell/css-variables-21g) - 08/03/2020
+</details>
+
 > This is a GitHub Action that will allow you to show your most recent blog posts from [DEV.TO](https://dev.to) in your README
 
 ## 🛠 Setup
@@ -34,7 +50,7 @@ jobs:
           # Add any other settings here
 ```
 
-- [x] Commit your files and read about [Events](#ℹ-events)
+- [x] Commit your files and read about [Events](#-events)
 
 ## ⚙ Settings
 
@@ -53,7 +69,7 @@ All settings will be placed in `devposts.yml`
 | **`commit_email`** | `String` | `false` | `workflow@github.com` | Email used when commiting |
 | **`commit_message`** | `String` | `false` | `Updated DEV Posts` | Message used when commiting |
 
-## ℹ Events
+## ⚡ Events
 
 ### `workflow_dispatch` 
 
