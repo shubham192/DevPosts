@@ -9,7 +9,8 @@ let markdowntable = require('markdown-table');
 let util = {
     commit: () => {
         let { file } = input.posts;
-        let { repo, token } = input.github;
+        let { token } = input.github;
+        let repo = process.env.GITHUB_REPOSITORY;
         let { username, email, message } = input.commit;
         exec(`git config --global user.email "${email}"`);
         exec(`git config --global user.name "${username}"`);

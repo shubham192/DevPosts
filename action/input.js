@@ -18,7 +18,6 @@ module.exports = {
         message: prod ? core.getInput('commit_message') : 'Updated Dev Posts'
     },
     gitub: {
-        repo: prod ? process.env.GITHUB_REPOSITORY : 'https://gitub.com/andrejarrell/andrejarrell',
         token: prod ? core.getInput('github_token') : 'N/A',
     }
 };
