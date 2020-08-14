@@ -4,12 +4,11 @@ let fs = require('fs').promises;
 let core = require('@actions/core');
 
 let updatePosts = async data => {
-    let res = await util.getFeed();
-    let xml = Buffer.from(res.body).toString();
-    let json = await util.xmlConvert(xml);
-    let posts = json.rss.channel.item;
-    let md = util.formatPosts(posts)
-    await util.editFile(md, data);
+    let feed = await util.getFeed();
+    let posts = input.posts.type === 'table'
+        ? util.createTable(feed.items)
+        : util.createList(feed.items);
+    await util.editFile(posts, data);
     util.commit();
 };
 

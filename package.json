@@ -2,9 +2,9 @@
   "name": "devposts",
   "version": "1.0.0",
   "description": "Show your latest DEV posts in your GitHub README",
-  "main": "action/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node action/index.js"
+    "build": "parcel build --no-source-maps --target=node --bundle-node-modules action/index.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,9 @@
     "@actions/core": "^1.2.4",
     "markdown-table": "^2.0.0",
     "moment": "^2.27.0",
-    "superagent": "^6.0.0",
-    "xml2js": "^0.4.23"
+    "rss-parser": "^3.9.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
   }
 }

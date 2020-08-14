@@ -15,7 +15,7 @@
 - [x] Create a `.github/workflows` directory and make file named `devposts.yml` inside it
 
 ```yaml
-name: Update Dev Posts
+name: Show Dev Posts
 on: 
   workflow_dispatch:
   schedule:
@@ -26,10 +26,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with: 
-          node-version: 12
-      - uses: andrejarrell/devposts@v1
+      - uses: andrejarrell/devposts@master
         with:
           # Make sure to replace username with yours
           posts_feed: https://dev.to/feed/username
@@ -62,7 +59,7 @@ All settings will be placed in `devposts.yml`
 
 With this you can manually trigger your workflow rather than waiting.
 
-Go to your repo -> `Actions` -> `Update Dev Posts` -> `Run workflow` -> `Run workflow`
+Go to your repo -> `Actions` -> `Show Dev Posts` -> `Run workflow` -> `Run workflow`
 
 ### `schedule`
 

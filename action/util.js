@@ -2,11 +2,11 @@ let input = require('./input');
 let xml2js = require('xml2js');
 let moment = require('moment');
 let fs = require('fs').promises;
-let superagent = require('superagent');
+let Parser = require('rss-parser');
 let { exec } = require('child_process');
 let markdowntable = require('markdown-table');
 
-module.exports = {
+let util = {
     commit: () => {
         let { file } = input.posts;
         let { repo, token } = input.github;
@@ -25,13 +25,9 @@ module.exports = {
     },
 
     getFeed: async () => {
+        let parser = new Parser();
         let { feed } = input.posts;
-        return await superagent.get(feed)
-    },
-
-    xmlConvert: async xml => {
-        let parser = new xml2js.Parser({ explicitArray: false });
-        return await parser.parseStringPromise(xml)
+        return await parser.parseURL(feed);
     },
 
     createTable: posts => {
@@ -40,16 +36,17 @@ module.exports = {
         if (amount == '0') {
             posts.forEach(p => {
                 rows.push([
-                    `[${p.title}](${p.link})`, formatDate(p.pubDate)
-                ])
-            })
+                    `[${p.title}](${p.link})`, util.formatDate(p.pubDate)
+                ]);
+            });
         } else {
+            amount = posts.length < amount ? posts.length : amount;
             for (i = 0; i < amount; i++) {
                 rows.push([
-                    `[${posts[i].title}](${posts[i].link})`, formatDate(posts[i].pubDate)
-                ])
-            }
-        }
+                    `[${posts[i].title}](${posts[i].link})`, util.formatDate(posts[i].pubDate)
+                ]);
+            };
+        };
         return markdowntable(rows);
     },
 
@@ -58,15 +55,16 @@ module.exports = {
         let rows = [];
         if (amount == '0') {
             posts.forEach(p => {
-                rows.push(`- [${p.title}](${p.link}) - ${formatDate(p.pubDate)}`)
-            })
+                rows.push(`- [${p.title}](${p.link}) - ${util.formatDate(p.pubDate)}`);
+            });
         } else {
+            amount = posts.length < amount ? posts.length : amount;
             for (i = 0; i < amount; i++) {
                 rows.push(
-                    `- [${posts[i].title}](${posts[i].link}) - ${formatDate(posts[i].pubDate)}`
-                )
-            }
-        }
+                    `- [${posts[i].title}](${posts[i].link}) - ${util.formatDate(posts[i].pubDate)}`
+                );
+            };
+        };
         return rows.join('\n');
     },
 
@@ -78,7 +76,9 @@ module.exports = {
         let endIndex = string.search(end);
         let startContent = string.substr(0, startIndex);
         let endContent = string.substr(endIndex, string.length);
-        let newString = startContent + posts + endContent;
+        let newString = `${startContent}\n${posts}\n${endContent}`;
         await fs.writeFile(file, newString, 'utf8');
     }
 };
+
+module.exports = util;

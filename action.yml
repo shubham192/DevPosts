@@ -1,4 +1,4 @@
-name: Update Dev Posts
+name: Show Dev Posts
 author: Andre Jarrell
 description: Show your latest DEV posts in your GitHub README
 
@@ -51,9 +51,9 @@ inputs:
     default: Updated DEV Posts
     description: Message used when commiting
 
-runs: 
+runs:
   using: node12
-  main: action/index.js
+  main: dist/index.js
 
 branding:
   icon: pen-tool
