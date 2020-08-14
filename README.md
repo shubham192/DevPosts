@@ -1,5 +1,7 @@
 # DevPosts
 
+[![actionshackathon](https://img.shields.io/badge/%23actionshackathon-0A0A0A?style=flat-square&logo=dev.to&logoColor=white)](https://dev.to/andrejarrell/dev-posts-on-github-4pij)
+
 <details>
 <summary>🖼 Examples</summary>
 
@@ -82,3 +84,11 @@ Go to your repo -> `Actions` -> `Show Dev Posts` -> `Run workflow` -> `Run workf
 `- cron: '0 * * * *'`
 
 This has been set to run every hour. You can change it using valid POSIX cron syntax.
+
+## 😃 Users
+
+Please let me know if you enjoy using this GitHub action! I will start making a list!
+
+## ℹ Info
+
+Please feel free to [submit issues](https://github.com/andrejarrell/devposts/issues/new) or contribute and make pull request!
