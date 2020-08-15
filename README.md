@@ -3,6 +3,11 @@
 [![actionshackathon](https://img.shields.io/badge/%23actionshackathon-0A0A0A?style=flat-square&logo=dev.to&logoColor=white)](https://dev.to/andrejarrell/dev-posts-on-github-4pij)
 
 <!-- devposts:start -->
+|                                     📰 Name                                     |   📅 Date  | ❤ Reactions | 💬 Comments |
+| :-----------------------------------------------------------------------------: | :--------: | :---------: | :---------: |
+|   [Dev Posts on GitHub](https://dev.to/andrejarrell/dev-posts-on-github-4pij)   | 08/14/2020 |      7      |      2      |
+| [JavaScript Calculator](https://dev.to/andrejarrell/javascript-calculator-4l6m) | 08/11/2020 |      4      |      0      |
+|          [CSS Variables](https://dev.to/andrejarrell/css-variables-21g)         | 08/03/2020 |      5      |      0      |
 <!-- devposts:end -->
 
 > This is a GitHub Action that will allow you to show your most recent blog posts from [DEV.TO](https://dev.to) in your README
