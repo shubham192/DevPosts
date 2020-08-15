@@ -1,6 +1,8 @@
 let https = require('https');
+let core = require('@actions/core');
 
 module.exports.get = url => {
+    core.debug(url);
     return new Promise((resolve, reject) => {
         console.log(url);
         https.get(url, response => {
