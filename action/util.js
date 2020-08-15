@@ -1,4 +1,4 @@
-let https = require('./https');
+// let https = require('./https');
 let moment = require('moment');
 let fs = require('fs').promises;
 let Parser = require('rss-parser');
@@ -44,24 +44,25 @@ let util = {
 
     createTable: async posts => {
         let amount = core.getInput('posts_amount');
-        let rows = [['📰 Name', '📅 Date', '❤ Reactions', '💬 Comments']];
+        let rows = [['📰 Name', '📅 Date']];
+        // , '❤ Reactions', '💬 Comments'
         if (amount == '0') {
             posts.forEach(async p => {
-                let stats = await util.getStats(p.link);
+                // let stats = await util.getStats(p.link);
                 rows.push([
-                    `[${p.title}](${p.link})`, util.formatDate(p.pubDate),
-                    stats.reactions, stats.comments
+                    `[${p.title}](${p.link})`, util.formatDate(p.pubDate)
                 ]);
+                // stats.reactions, stats.comments
             });
         } else {
             amount = posts.length < amount ? posts.length : amount;
             for (i = 0; i < amount; i++) {
-                let stats = await util.getStats(posts[i].link);
+                // let stats = await util.getStats(posts[i].link);
                 rows.push([
                     `[${posts[i].title}](${posts[i].link})`,
-                    util.formatDate(posts[i].pubDate),
-                    stats.reactions, stats.comments
+                    util.formatDate(posts[i].pubDate)
                 ]);
+                // stats.reactions, stats.comments
             };
         };
         return table(rows, { align: 'c' });
