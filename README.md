@@ -2,21 +2,8 @@
 
 [![actionshackathon](https://img.shields.io/badge/%23actionshackathon-0A0A0A?style=flat-square&logo=dev.to&logoColor=white)](https://dev.to/andrejarrell/dev-posts-on-github-4pij)
 
-<details>
-<summary>🖼 Examples</summary>
-
-### Table
-
-| Name                                                                            | Date       |
-| ------------------------------------------------------------------------------- | ---------- |
-| [JavaScript Calculator](https://dev.to/andrejarrell/javascript-calculator-4l6m) | 08/11/2020 |
-| [CSS Variables](https://dev.to/andrejarrell/css-variables-21g)                  | 08/03/2020 |
-
-### List
-
-- [JavaScript Calculator](https://dev.to/andrejarrell/javascript-calculator-4l6m) - 08/11/2020
-- [CSS Variables](https://dev.to/andrejarrell/css-variables-21g) - 08/03/2020
-</details>
+<!-- devposts:start -->
+<!-- devposts:end -->
 
 > This is a GitHub Action that will allow you to show your most recent blog posts from [DEV.TO](https://dev.to) in your README
 
@@ -44,10 +31,10 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - uses: andrejarrell/devposts@master
+      - uses: andrejarrell/devposts@1.2.0
         with:
-          # Make sure to replace username with yours
-          posts_feed: https://dev.to/feed/username
+          # Replace username with your dev.to username
+          dev_username: username
           github_token: ${{ secrets.GH_TOKEN }}
           # Add any other settings here
 ```
@@ -60,10 +47,9 @@ All settings will be placed in `devposts.yml`
 
 | Name | Type | Required | Default | Description | ETC |
 | -- | -- | -- | -- | -- | -- |
-| **`github_token`** | `String` | `true` | N/A | Used to authenticate |
+| **`github_token`** | [`Secret`](https://docs.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token) | `true` | N/A | Used to authenticate |
+| **`dev_username`** | `String` | `true` | N/A | Dev.to username |
 | **`posts_amount`** | `Number` | `false` | `0` | Amount of posts | `0` = all |
-| **`posts_type`** | `String` | `false` | `table` | Table or List |
-| **`posts_feed`** | `String` | `true` | N/A | URL for DEV feed | `https://dev.to/feed/username` |
 | **`posts_file`** | `String` | `false` | `README.md` | File to be edited | Relative to root directory |
 | **`posts_locator`** | `String` | `false` | `devposts` | Comment tag used to inject posts | `<!-- devposts:start -->` + `<!-- devposts:end -->` |
 | **`date_format`** | `String` | `false` | `MM/DD/YYYY` | Format for date | [Moment.js Formats](https://momentjs.com/docs/#/displaying/format/) |

@@ -7,19 +7,14 @@ inputs:
     required: true
     description: Used to authenticate
 
+  dev_username:
+    required: true
+    description: Dev.to username
+
   posts_amount:
     required: false
     default: 0
     description: Amount of posts
-
-  posts_type:
-    required: false
-    default: table
-    description: Table or List
-
-  posts_feed:
-    required: true
-    description: URL for DEV feed
 
   posts_file:
     required: false

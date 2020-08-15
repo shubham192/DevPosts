@@ -1,9 +1,10 @@
+let https = require('./https');
 let moment = require('moment');
 let fs = require('fs').promises;
 let Parser = require('rss-parser');
 let core = require('@actions/core');
+let table = require('markdown-table');
 let { exec } = require('child_process');
-let markdowntable = require('markdown-table');
 
 let util = {
     commit: () => {
@@ -28,46 +29,42 @@ let util = {
 
     getFeed: async () => {
         let parser = new Parser();
-        let feed = core.getInput('posts_feed');
-        return await parser.parseURL(feed);
+        let user = core.getInput('dev_username');
+        return await parser.parseURL(`https://dev.to/feed/'${user}`);
     },
 
-    createTable: posts => {
-        let rows = [['Name', 'Date']];
+    getStats: async url => {
+        let slug = url.substr(15);
+        let stats = await https.get(`https://dev.to/api/articles/${slug}`);
+        return {
+            comments: stats.comments_count,
+            reactions: stats.public_reactions_count,
+        };
+    },
+
+    createTable: async posts => {
         let amount = core.getInput('posts_amount');
+        let rows = [['📰 Name', '📅 Date', '❤ Reactions', '💬 Comments']];
         if (amount == '0') {
-            posts.forEach(p => {
+            posts.forEach(async p => {
+                let stats = await util.getStats(p.link);
                 rows.push([
-                    `[${p.title}](${p.link})`, util.formatDate(p.pubDate)
+                    `[${p.title}](${p.link})`, util.formatDate(p.pubDate),
+                    stats.reactions, stats.comments
                 ]);
             });
         } else {
             amount = posts.length < amount ? posts.length : amount;
             for (i = 0; i < amount; i++) {
+                let stats = await util.getStats(posts[i].link);
                 rows.push([
-                    `[${posts[i].title}](${posts[i].link})`, util.formatDate(posts[i].pubDate)
+                    `[${posts[i].title}](${posts[i].link})`,
+                    util.formatDate(posts[i].pubDate),
+                    stats.reactions, stats.comments
                 ]);
             };
         };
-        return markdowntable(rows);
-    },
-
-    createList: posts => {
-        let rows = [];
-        let amount = core.getInput('posts_amount');
-        if (amount == '0') {
-            posts.forEach(p => {
-                rows.push(`- [${p.title}](${p.link}) - ${util.formatDate(p.pubDate)}`);
-            });
-        } else {
-            amount = posts.length < amount ? posts.length : amount;
-            for (i = 0; i < amount; i++) {
-                rows.push(
-                    `- [${posts[i].title}](${posts[i].link}) - ${util.formatDate(posts[i].pubDate)}`
-                );
-            };
-        };
-        return rows.join('\n');
+        return table(rows, { align: 'c' });
     },
 
     editFile: async (posts, string) => {

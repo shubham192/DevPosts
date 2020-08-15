@@ -1,6 +1,6 @@
 {
   "name": "devposts",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Show your latest DEV posts in your GitHub README",
   "main": "dist/index.js",
   "scripts": {

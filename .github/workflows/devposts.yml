@@ -1,0 +1,16 @@
+name: Show Dev Posts
+on: 
+  workflow_dispatch:
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  update:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: andrejarrell/devposts@master
+        with:
+          posts_amount: 3
+          dev_username: andrejarrell
+          github_token: ${{ secrets.GH_TOKEN }}
