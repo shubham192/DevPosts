@@ -21,7 +21,7 @@
 
 ```yaml
 name: Show Dev Posts
-on: 
+on:
   workflow_dispatch:
   schedule:
     - cron: '0 * * * *'
@@ -47,7 +47,7 @@ All settings will be placed in `devposts.yml`
 
 | Name | Type | Required | Default | Description | ETC |
 | -- | -- | -- | -- | -- | -- |
-| **`github_token`** | [`Secret`](https://docs.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token) | `true` | N/A | Used to authenticate |
+| **`github_token`** | [`Secret`](https://docs.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token) | `true` | `${{ secrets.GH_TOKEN }}` | Used to authenticate |
 | **`dev_username`** | `String` | `true` | N/A | Dev.to username |
 | **`posts_amount`** | `Number` | `false` | `0` | Amount of posts | `0` = all |
 | **`posts_file`** | `String` | `false` | `README.md` | File to be edited | Relative to root directory |
