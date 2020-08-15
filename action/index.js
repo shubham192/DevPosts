@@ -4,7 +4,9 @@ let core = require('@actions/core');
 
 let updatePosts = async data => {
     let feed = await util.getFeed();
+    core.debug(feed);
     let posts = await util.createTable(feed.items);
+    core.debug(posts);
     await util.editFile(posts, data);
     util.commit();
 };

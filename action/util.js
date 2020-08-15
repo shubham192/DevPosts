@@ -30,7 +30,7 @@ let util = {
     getFeed: async () => {
         let parser = new Parser();
         let user = core.getInput('dev_username');
-        return await parser.parseURL(`https://dev.to/feed/'${user}`);
+        return await parser.parseURL(`https://dev.to/feed/'${user}`)
     },
 
     getStats: async url => {
