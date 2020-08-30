@@ -77,4 +77,4 @@ Please let me know if you enjoy using this GitHub action! I will start making a 
 
 ## ℹ Info
 
-Please feel free to [submit issues](https://github.com/andrejarrell/devposts/issues/new) or contribute and make pull request!
+Please feel free to [submit issues](https://github.com/andrejarrell/DevPosts/issues/new/choose) or contribute and make pull request!
