@@ -62,7 +62,7 @@ All settings will be placed in `devposts.yml`
 
 ### `push`
 
-Trigger workflow whenever you to push to your repository.
+Trigger workflow whenever you push to your repository.
 
 To customize which branches trigger this workflow refer to the [documentation](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestbranchestags).
 
