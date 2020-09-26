@@ -5,7 +5,7 @@
 <!-- devposts:start -->
 <!-- devposts:end -->
 
-> This is a GitHub Action that will allow you to show your most recent blog posts from [DEV.TO](https://dev.to) in your README
+> This is a GitHub Action that will allow you to show your most recent blog posts from [dev.to](https://dev.to) in your README
 
 ## 🛠 Setup
 
@@ -22,6 +22,7 @@
 ```yaml
 name: Show Dev Posts
 on:
+  push:
   workflow_dispatch:
   schedule:
     - cron: '0 * * * *'
@@ -31,7 +32,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - uses: andrejarrell/devposts@1.2.0
+      - uses: andrejarrell/devposts@1.3.0
         with:
           # Replace username with your dev.to username
           dev_username: username
@@ -59,9 +60,15 @@ All settings will be placed in `devposts.yml`
 
 ## ⚡ Events
 
+### `push`
+
+Trigger workflow whenever you to push to your repository.
+
+To customize which branches trigger this workflow refer to the [documentation](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestbranchestags).
+
 ### `workflow_dispatch` 
 
-With this you can manually trigger your workflow rather than waiting.
+With this you can manually trigger your workflow.
 
 Go to your repo -> `Actions` -> `Show Dev Posts` -> `Run workflow` -> `Run workflow`
 
@@ -70,10 +77,6 @@ Go to your repo -> `Actions` -> `Show Dev Posts` -> `Run workflow` -> `Run workf
 `- cron: '0 * * * *'`
 
 This has been set to run every hour. You can change it using valid POSIX cron syntax.
-
-## 😃 Users
-
-Please let me know if you enjoy using this GitHub action! I will start making a list!
 
 ## ℹ Info
 
